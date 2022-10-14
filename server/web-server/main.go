@@ -18,7 +18,6 @@ type weatherinfo struct {
 	} `json:"main"`
 }
 
-
 //getObject responds with the list of all objects as JSON
 func getWeather(c *gin.Context) {
 	lon := c.Query("lon")
