@@ -1,9 +1,59 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import "package:http/http.dart" as http;
+import 'package:spike_test/constants.dart';
 
-List places = ["Artana", "Castellón", "Vila-real", "Valencia", "Alicante"];
+/* List places = ["Artana", "Castellón", "Vila-real", "Valencia", "Alicante"]; */
 
-class PrimaryScreen extends StatelessWidget {
+/* 
+  {
+    "name":"name",
+    "temp":"temp"
+  }
+ */
+
+/* A list of objects of cities that contains a parameter with the name and the temperature */
+/* List places = [
+  {"name": "Artana", "temp": "12"},
+  {"name": "Castellón", "temp": "12"},
+  {"name": "Vila-real", "temp": "12"},
+  {"name": "Valencia", "temp": "12"},
+  {"name": "Alicante", "temp": "12"},
+]; */
+
+class PrimaryScreen extends StatefulWidget {
   const PrimaryScreen({super.key});
+
+  @override
+  State<PrimaryScreen> createState() => _PrimaryScreenState();
+}
+
+class _PrimaryScreenState extends State<PrimaryScreen> {
+  Map<String, dynamic> place = {"name": "Dato inicial", "temp": -1};
+
+  Future<void> getTemp() async {
+    http.get(Uri.parse("$API//weather?lat=39.98567&lon=-0.04935")).then((r) {
+      dynamic data = jsonDecode(r.body);
+      setState(() {
+        place = data;
+      });
+    });
+  }
+
+  void mockTestApiCall() {
+    setState(() {
+      place = {"name": "Castellón", "temp": 30};
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getTemp();
+    mockTestApiCall();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +62,10 @@ class PrimaryScreen extends StatelessWidget {
         title: const Text("WeatherApp"),
         /* remove back button */
         automaticallyImplyLeading: false,
-        leading: IconButton(onPressed: () {}, icon: const Icon(Icons.settings)),
+        leading: IconButton(
+          onPressed: () {},
+          icon: const Icon(Icons.settings),
+        ),
       ),
       body: SafeArea(
         child: Padding(
@@ -36,12 +89,19 @@ class PrimaryScreen extends StatelessWidget {
                   (context, index) {
                     return ListTile(
                       title: Text(
-                        "${places[index]}: 20º",
+                        "${place["name"]}",
                         textAlign: TextAlign.center,
+                      ),
+                      trailing: Text(
+                        "Temp: ${place["temp"]}º",
+                        style: TextStyle(
+                          color: Colors.grey[500],
+                        ),
                       ),
                     );
                   },
-                  childCount: places.length,
+                  /* childCount: places.length, */
+                  childCount: 10,
                 ),
               )
             ],

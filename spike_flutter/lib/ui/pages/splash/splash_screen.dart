@@ -34,7 +34,6 @@ class _SplashScreenState extends State<SplashScreen> {
           child: SvgPicture.asset("assets/svgs/splash.svg"),
         ),
       ),
-
     );
   }
 }
