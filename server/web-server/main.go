@@ -3,6 +3,11 @@ package main
 import (
 	"net/http"
 	"github.com/gin-gonic/gin"
+	"io/ioutil"
+	"os"
+	"fmt"
+	"log"
+
 )
 
 //info represents data about an object
@@ -49,10 +54,35 @@ func postObject(c *gin.Context) {
 	c.IndentedJSON(http.StatusCreated, newObject)
 }
 
+func getWeather(c *gin.Context) {
+	lon := c.DefaultQuery("lon", "0")
+	lat := c.Query("lat")
+	apikey := "9067f8054b718909b3849307f3c05085"
+	
+	url := "https://api.openweathermap.org/data/3.0/onecall?lat=" + lat + "&lon=" + lon + "&appid=" + apikey
+
+	response, err := http.Get(url)
+
+    	if err != nil {
+		fmt.Print(err.Error())
+		os.Exit(1)
+    	}
+
+	responseData, err := ioutil.ReadAll(response.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(string(responseData))
+
+
+	c.IndentedJSON(http.StatusOK, string(responseData))
+}
+
 func main(){
 	router := gin.Default()
 	router.GET("/objects", getObjects)
 	router.GET("/objects/:id", getObjectByID)
+	router.GET("/weather", getObjectByID)
 	router.POST("/objects", postObject)
 	router.Run("localhost:8080")
 }
