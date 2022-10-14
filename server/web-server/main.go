@@ -7,10 +7,20 @@ import (
 	"os"
 	"fmt"
 	"log"
-
+	"encoding/json"
 )
 
 //info represents data about an object
+
+
+type weatherinfo struct {
+	Name string `json:"name"`
+	Info []Info `json:"main"`
+}
+
+type Info struct {
+	Temp float64 `json:"temp"`
+}
 
 type object struct {
 	ID	string	`json:"id"`
@@ -58,11 +68,10 @@ func getWeather(c *gin.Context) {
 	lon := c.Query("lon")
 	lat := c.Query("lat")
 	apikey := "9067f8054b718909b3849307f3c05085"
-	
-	url := "https://api.openweathermap.org/data/3.0/onecall?lat=" + lat + "&lon=" + lon + "&appid=" + apikey
+	units := "metric"
+	url := "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=" + apikey + "&units" + units
 
 	response, err := http.Get(url)
-
     	if err != nil {
 		fmt.Print(err.Error())
 		os.Exit(1)
@@ -72,17 +81,21 @@ func getWeather(c *gin.Context) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(string(responseData))
 
+	var responseObject weatherinfo
+	json.Unmarshal(responseData, &responseObject)
 
-	c.IndentedJSON(http.StatusOK, string(responseData))
+	fmt.Println(responseObject.Name)
+	fmt.Println(responseObject.Info)
+
+	c.IndentedJSON(http.StatusOK, responseObject)
 }
 
 func main(){
 	router := gin.Default()
 	router.GET("/objects", getObjects)
 	router.GET("/objects/:id", getObjectByID)
-	router.GET("/weather", getObjectByID)
+	router.GET("/weather", getWeather)
 	router.POST("/objects", postObject)
 	router.Run("localhost:8080")
 }
