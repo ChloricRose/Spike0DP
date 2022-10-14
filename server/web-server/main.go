@@ -55,7 +55,7 @@ func postObject(c *gin.Context) {
 }
 
 func getWeather(c *gin.Context) {
-	lon := c.DefaultQuery("lon", "0")
+	lon := c.Query("lon")
 	lat := c.Query("lat")
 	apikey := "9067f8054b718909b3849307f3c05085"
 	
