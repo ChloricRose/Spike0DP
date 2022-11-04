@@ -30,20 +30,15 @@ class PrimaryScreen extends StatefulWidget {
 }
 
 class _PrimaryScreenState extends State<PrimaryScreen> {
-  Map<String, dynamic> place = {"name": "Dato inicial", "temp": -1};
+  Map<String, dynamic> tempCs = {"name": "Castellón", "temp": ""};
 
   Future<void> getTemp() async {
-    http.get(Uri.parse("$API//weather?lat=39.98567&lon=-0.04935")).then((r) {
+    http.get(Uri.parse("$API/getTemp?lat=39.98567&lon=-0.04935")).then((r) {
       dynamic data = jsonDecode(r.body);
       setState(() {
-        place = data;
+        tempCs["temp"] = data;
+        //TODO
       });
-    });
-  }
-
-  void mockTestApiCall() {
-    setState(() {
-      place = {"name": "Castellón", "temp": 30};
     });
   }
 
@@ -52,7 +47,6 @@ class _PrimaryScreenState extends State<PrimaryScreen> {
     // TODO: implement initState
     super.initState();
     getTemp();
-    mockTestApiCall();
   }
 
   @override
@@ -83,8 +77,18 @@ class _PrimaryScreenState extends State<PrimaryScreen> {
                   ],
                 ),
               ),
-              /* Sliver generator */
-              SliverList(
+              SliverToBoxAdapter(
+                child: ListTile(
+                  title: Text(tempCs["name"]),
+                  trailing: Text(
+                    "Temp: ${tempCs["temp"]}º",
+                    style: TextStyle(
+                      color: Colors.grey[500],
+                    ),
+                  ),
+                ),
+              ),
+              /* SliverList(
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {
                     return ListTile(
@@ -101,9 +105,9 @@ class _PrimaryScreenState extends State<PrimaryScreen> {
                     );
                   },
                   /* childCount: places.length, */
-                  childCount: 10,
+                  childCount: 1,
                 ),
-              )
+              ) */
             ],
           ),
         ),
