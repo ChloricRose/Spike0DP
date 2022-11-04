@@ -37,14 +37,12 @@ class _PrimaryScreenState extends State<PrimaryScreen> {
       dynamic data = jsonDecode(r.body);
       setState(() {
         tempCs["temp"] = data;
-        //TODO
       });
     });
   }
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     getTemp();
   }
