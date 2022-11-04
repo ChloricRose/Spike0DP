@@ -44,6 +44,6 @@ func getWeather(c *gin.Context) {
 
 func main(){
 	router := gin.Default()
-	router.GET("/weather", getWeather)
-	router.Run("localhost:8080")
+	router.GET("/getTemp", getWeather)
+	router.Run("172.20.10.2:8080")
 }
