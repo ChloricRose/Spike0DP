@@ -14,7 +14,7 @@ class WeatherService {
   WeatherService({http.Client? client}) : _client = client ?? http.Client();
 
   Future<WeatherModel> getWeather(String location) async {
-    final uri = Uri.parse('$_baseUrl?q=$location&appid=$_apiKey');
+    final uri = Uri.parse('$_baseUrl?q=$location&units=metric&appid=$_apiKey');
 
     final response = await _client.get(uri);
 
@@ -23,6 +23,7 @@ class WeatherService {
     }
 
     final json = jsonDecode(response.body);
+    print(json);
 
     final temperature = json['main']['temp'];
     final precipitation = json['weather'][0]['description'];

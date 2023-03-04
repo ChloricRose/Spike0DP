@@ -1,0 +1,14 @@
+/home/juanfe/Universidad/Asignaturas/ProyectoDiseyPara/repo/Spike0DP/flutterspike0/CMakeFiles/flutterspike0.dir
+/home/juanfe/Universidad/Asignaturas/ProyectoDiseyPara/repo/Spike0DP/flutterspike0/CMakeFiles/edit_cache.dir
+/home/juanfe/Universidad/Asignaturas/ProyectoDiseyPara/repo/Spike0DP/flutterspike0/CMakeFiles/rebuild_cache.dir
+/home/juanfe/Universidad/Asignaturas/ProyectoDiseyPara/repo/Spike0DP/flutterspike0/CMakeFiles/list_install_components.dir
+/home/juanfe/Universidad/Asignaturas/ProyectoDiseyPara/repo/Spike0DP/flutterspike0/CMakeFiles/install.dir
+/home/juanfe/Universidad/Asignaturas/ProyectoDiseyPara/repo/Spike0DP/flutterspike0/CMakeFiles/install/local.dir
+/home/juanfe/Universidad/Asignaturas/ProyectoDiseyPara/repo/Spike0DP/flutterspike0/CMakeFiles/install/strip.dir
+/home/juanfe/Universidad/Asignaturas/ProyectoDiseyPara/repo/Spike0DP/flutterspike0/flutter/CMakeFiles/flutter_assemble.dir
+/home/juanfe/Universidad/Asignaturas/ProyectoDiseyPara/repo/Spike0DP/flutterspike0/flutter/CMakeFiles/edit_cache.dir
+/home/juanfe/Universidad/Asignaturas/ProyectoDiseyPara/repo/Spike0DP/flutterspike0/flutter/CMakeFiles/rebuild_cache.dir
+/home/juanfe/Universidad/Asignaturas/ProyectoDiseyPara/repo/Spike0DP/flutterspike0/flutter/CMakeFiles/list_install_components.dir
+/home/juanfe/Universidad/Asignaturas/ProyectoDiseyPara/repo/Spike0DP/flutterspike0/flutter/CMakeFiles/install.dir
+/home/juanfe/Universidad/Asignaturas/ProyectoDiseyPara/repo/Spike0DP/flutterspike0/flutter/CMakeFiles/install/local.dir
+/home/juanfe/Universidad/Asignaturas/ProyectoDiseyPara/repo/Spike0DP/flutterspike0/flutter/CMakeFiles/install/strip.dir
